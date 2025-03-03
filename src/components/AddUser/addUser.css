@@ -1,0 +1,21 @@
+.userForm{
+    border: 1px solid #a50909;
+    padding: 10px;
+
+}
+
+.userInput{ 
+    max-width: 200px;
+    padding: 10px ;
+    margin: 5px 0;
+}
+
+.userInputMain{
+    margin: 10px;
+}
+
+.userLAbel{
+    /* max-width: 100px; */
+   margin: 0 10px;
+
+}
