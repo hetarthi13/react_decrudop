@@ -1,10 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const base_url = "http://localhost:8000/api";
+
 // Async thunk to fetch user data
 export const fetchUsers = createAsyncThunk('user/fetchUsers', async () => {
-  const response = await axios.get('http://localhost:8000/api/get');
-  console.log(response.data,"response.data");
+  const response = await axios.get(`${base_url}/get`);
   
   return response.data; // Return the fetched data
 });
@@ -13,7 +14,7 @@ export const updateUser = createAsyncThunk(
   'user/updateUser', 
   async ({ id, firstName, email, password }, { rejectWithValue }) => {
     try {
-      const response = await axios.put(`http://localhost:8000/api/editUser/${id}`, {
+      const response = await axios.put(`${base_url}/editUser/${id}`, {
         name: firstName,
         email,
         password,
@@ -31,7 +32,7 @@ export const fetchUserData = createAsyncThunk(
   'user/fetchUserData',
   async (id, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`http://localhost:8000/api/getbyuseId/${id}`);
+      const response = await axios.get(`${base_url}/getbyuseId/${id}`);
       return response.data; // Return the fetched user data
     } catch (error) {
       return rejectWithValue(error.response?.data || 'Failed to fetch user data');
@@ -45,7 +46,7 @@ export const deleteUsers = createAsyncThunk(
     try {
       console.log(id);
       
-      const response = await axios.delete(`http://localhost:8000/api/deleteUser/${id}`);
+      const response = await axios.delete(`${base_url}/deleteUser/${id}`);
       console.log(response,"delte response");
       
       return response.data; // Return the fetched user data
